@@ -1,14 +1,10 @@
 package tetris.imp.gwt;
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import tetris.imp.view.ViewPlatform;
 import tetris.model.KeyState;
-import tetris.view.KeyListener;
-
 import com.google.gwt.core.client.JavaScriptObject;
 
 public class Bridge 
@@ -74,16 +70,18 @@ public class Bridge
 	
 	public static void onChatEntry (String string)
 	{
+		if (focus!=null)
+			focus.onText(string);
 	}
 	
 	public static void onGameFocus ()
 	{
-		
+		LocalBoardViewGwt.getInstance().requestFocus();
 	}
 	
 	public static void onChatFocus ()
 	{
-		
+		ChatViewGwt.getInstance().requestFocus();
 	}
 
 	public static native JavaScriptObject createGameListItem (GameListViewGwt _parent, String _id, String title) /*-{
@@ -169,10 +167,11 @@ public class Bridge
     	}
 	    
 	    $wnd.$('#entry').click(function() { window.onChatFocus(); });
-	    $wnd.$('#entry').keyup(function(event){
-    		if(event.keyCode == 13){
-    			window.onChatText($('#entry').val());
-    			$('#entry').val('');
+	    $wnd.$('#entry').keyup(function(event) {
+    		if(event.keyCode == 13)
+    		{
+    			$wnd.onChatEntry($wnd.$('#entry').val());
+    			$wnd.$('#entry').val('');
     		}
 	    });
 	    

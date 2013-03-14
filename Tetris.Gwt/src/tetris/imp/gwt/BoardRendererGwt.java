@@ -3,11 +3,9 @@ package tetris.imp.gwt;
 import tetris.model.Board;
 import tetris.model.BoardMatrix;
 import tetris.model.LocalBoard;
-import tetris.model.Piece;
 import tetris.model.Shape;
 import tetris.renderer.BoardRenderer;
 import tetris.view.BoardView;
-import tetris.view.View;
 
 public class BoardRendererGwt implements BoardRenderer
 {
@@ -23,18 +21,18 @@ public class BoardRendererGwt implements BoardRenderer
 
 		if (view.getLastPiece()!=null)
 		{
-			pieceRenderer.clearPiece(canvas, view.getLastPiece(), boardMatrix);
-			
 			if (view.getLastGhostPiece()!=null)
 				pieceRenderer.clearPiece(canvas, view.getLastGhostPiece(), boardMatrix);
+
+			pieceRenderer.clearPiece(canvas, view.getLastPiece(), boardMatrix);
 		}
 
 		if (board.getCurrentPiece().getShape() != Shape.NONE) 
 		{
-			pieceRenderer.drawPiece(canvas, board.getCurrentPiece(), boardMatrix, false);
-			
 			if (board instanceof LocalBoard)
 				pieceRenderer.drawPiece(canvas, ((LocalBoard)board).getGhostPiece(), boardMatrix, true);
+
+			pieceRenderer.drawPiece(canvas, board.getCurrentPiece(), boardMatrix, false);
 		}
 		
 	}
@@ -65,10 +63,10 @@ public class BoardRendererGwt implements BoardRenderer
 
 		if (board.getCurrentPiece().getShape() != Shape.NONE) 
 		{
-			pieceRenderer.drawPiece(canvas, board.getCurrentPiece(), boardMatrix, false);
-			
 			if (board instanceof LocalBoard)
 				pieceRenderer.drawPiece(canvas, ((LocalBoard)board).getGhostPiece(), boardMatrix, true);
+
+			pieceRenderer.drawPiece(canvas, board.getCurrentPiece(), boardMatrix, false);
 		}
 	}
 

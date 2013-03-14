@@ -14,8 +14,8 @@ public class BagViewGwt extends BagView
 		BAG_WIDTH = 3;
 	
 	static final int
-		HOLD_HEIGHT = 4,
-		HOLD_WIDTH = 3;
+		HOLD_HEIGHT = 5,
+		HOLD_WIDTH = 5;
 	
 	PieceRendererGwt pieceRenderer = new PieceRendererGwt();
 	
@@ -59,7 +59,7 @@ public class BagViewGwt extends BagView
 			{
 				Piece piece = new Piece();
 				piece.setShape(shape);
-				piece.applyDelta(0, 1, 2);
+				piece.applyDelta(0, 2, 2);
 				pieceRenderer.drawPiece(holdCanvas, piece, holdBoardMatrix, false);
 			}
 		}

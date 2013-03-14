@@ -33,7 +33,7 @@ public class ViewFactoryGwt extends ViewFactory
 	@Override
 	public View instantiateFor(LocalBoard board) 
 	{
-		LocalBoardView view = new LocalBoardView(board, new BoardRendererGwt());
+		LocalBoardView view = new LocalBoardViewGwt(board, new BoardRendererGwt());
 		view.setJS(Bridge.localBoard);
 		
 		return view;
@@ -75,7 +75,7 @@ public class ViewFactoryGwt extends ViewFactory
 	@Override
 	public View instantiateFor(Chat model) 
 	{
-		ChatView view = new ChatView (model);
+		ChatView view = new ChatViewGwt (model);
 		return view;
 	}
 

@@ -41,6 +41,8 @@ public class MsgFactory
 			return new MsgPing();
 		case PLAYER_INFO:
 			return new MsgPlayerInfo();
+		case CHAT:
+			return new MsgChat();
 		}
 		
 		return new MsgGeneric(type);
