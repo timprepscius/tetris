@@ -7,7 +7,6 @@ import java.util.List;
 import core.util.Ticker;
 
 import tetris.model.GameInfo;
-import tetris.network.ID;
 import tetris.network.Message;
 import tetris.network.message.MsgEnterGame;
 import tetris.network.message.MsgGameBegin;

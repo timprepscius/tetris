@@ -2,10 +2,8 @@ package tetris.net;
 
 import core.util.Ticker;
 import tetris.model.Game;
-import tetris.model.PlayerInfo;
 import tetris.network.Connection;
 import tetris.network.Message;
-import tetris.network.MessageType;
 import tetris.network.message.MsgEnterGame;
 import tetris.network.message.MsgGameCountDown;
 import tetris.network.message.MsgLeaveGame;

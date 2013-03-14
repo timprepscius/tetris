@@ -1,6 +1,5 @@
 package tetris.model;
 
-import tetris.network.ID;
 import tetris.view.TetrisView;
 
 public class Tetris extends ModelSet

@@ -1,7 +1,6 @@
 package tetris.net;
 
 import tetris.model.Board;
-import tetris.model.Flags;
 import tetris.model.LocalBoard;
 import tetris.network.Connection;
 import tetris.network.Message;

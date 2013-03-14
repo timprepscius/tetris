@@ -15,6 +15,7 @@ public class MsgChat extends Message
 	public MsgChat(String text)
 	{
 		super(MessageType.CHAT);
+		this.text = text;
 	}
 	
 	public byte[] serialize()

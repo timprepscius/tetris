@@ -1,7 +1,6 @@
 package tetris.operation;
 
 import tetris.model.Board;
-import tetris.model.Flags;
 import tetris.model.Piece;
 import tetris.model.Shape;
 import tetris.network.Message;

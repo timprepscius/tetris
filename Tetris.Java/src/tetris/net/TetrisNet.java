@@ -3,7 +3,6 @@ package tetris.net;
 import tetris.model.Model;
 import tetris.model.Tetris;
 import tetris.network.Connection;
-import tetris.network.ID;
 import tetris.network.Message;
 import tetris.network.MessageType;
 import tetris.network.message.MsgInitialize;

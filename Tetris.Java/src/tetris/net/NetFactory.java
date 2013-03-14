@@ -4,7 +4,6 @@ import tetris.TetrisException;
 import tetris.model.Bag;
 import tetris.model.Chat;
 import tetris.model.Game;
-import tetris.model.Board;
 import tetris.model.GameList;
 import tetris.model.LocalBoard;
 import tetris.model.Model;
@@ -15,7 +14,6 @@ import tetris.network.ConnectionAdapter;
 import tetris.network.ConsoleConnection;
 import tetris.network.GameConnection;
 import tetris.network.PlayerConnection;
-import tetris.view.View;
 
 public class NetFactory
 {

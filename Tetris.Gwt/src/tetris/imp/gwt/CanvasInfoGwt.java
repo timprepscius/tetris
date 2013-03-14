@@ -2,8 +2,6 @@ package tetris.imp.gwt;
 
 import tetris.model.CanvasInfo;
 
-import com.google.gwt.core.client.JavaScriptObject;
-
 public class CanvasInfoGwt extends CanvasInfo
 {
 	public void calculate (Object canvas)

@@ -2,8 +2,6 @@ package tetris.imp.view;
 
 import tetris.imp.gwt.Bridge;
 import tetris.model.KeyState;
-import tetris.view.KeyListener;
-
 import com.google.gwt.core.client.JavaScriptObject;
 
 public abstract class ViewPlatform 

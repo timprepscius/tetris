@@ -1,11 +1,8 @@
 package com.benith.tetris.client;
 
-import tetris.imp.gwt.Bridge;
 import tetris.imp.gwt.DriverGwt;
 
 import com.google.gwt.core.client.EntryPoint;
-import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.dev.shell.JavaObject;
 
 /**
  * Entry point classes define <code>onModuleLoad()</code>.

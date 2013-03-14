@@ -1,7 +1,6 @@
 package tetris.view;
 
 import tetris.model.Game;
-import tetris.model.Board;
 import tetris.model.Model;
 
 public class GameView extends View

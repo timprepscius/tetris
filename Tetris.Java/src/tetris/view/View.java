@@ -4,7 +4,6 @@ import tetris.imp.view.ViewPlatform;
 import tetris.model.KeyState;
 import tetris.model.Model;
 
-@SuppressWarnings("serial")
 public class View extends ViewPlatform
 {
 	Model model;

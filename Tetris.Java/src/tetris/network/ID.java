@@ -2,7 +2,6 @@ package tetris.network;
 
 import core.util.Base16;
 import core.util.FastRandom;
-import core.util.Strings;
 
 public class ID
 {

@@ -4,13 +4,11 @@ import tetris.TetrisException;
 import tetris.model.Bag;
 import tetris.model.Chat;
 import tetris.model.Game;
-import tetris.model.Board;
 import tetris.model.GameList;
 import tetris.model.LocalBoard;
 import tetris.model.Model;
 import tetris.model.RemoteBoard;
 import tetris.model.Tetris;
-import tetris.renderer.BoardRenderer;
 
 public abstract class ViewFactory
 {

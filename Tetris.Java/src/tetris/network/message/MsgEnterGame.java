@@ -1,7 +1,6 @@
 package tetris.network.message;
 
 import tetris.model.PlayerInfo;
-import tetris.network.Message;
 import tetris.network.MessageType;
 
 public class MsgEnterGame extends MsgPlayerInfo
