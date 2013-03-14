@@ -1,0 +1,75 @@
+<!doctype html>
+
+<html>
+<head>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+	<script src="js/Utf.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="index.css">
+	<script src="index.js"></script>
+	
+    <script type="text/javascript" language="javascript" src="tetris_gwt/tetris_gwt.nocache.js"></script>
+</head>
+<body>
+	<div class="container">
+	
+	<table id="chooseRoomContainer" class="chooseRoom full">
+		<tr><td class="header" colspan="2">Header</td></tr>
+		<tr>
+			<td class="left">
+			<div class="gameList" id="gameList">
+			
+			</div></td>
+			<td class="buttons right"><button>Play</button></td>
+		<tr>
+		<td class="footer" colspan="2">Footer</td></tr>
+	</table>
+
+	<table id="playContainer" class="play full initially-hidden">
+		<tr><td class="header" colspan="2">Header</td></tr>
+		<tr>
+			<td class="left">
+				<table><tr>
+					<td class="local-board-container" id="localBoardContainer">
+						<div class="countdown" id="countdown"><span class="value">C</span></div>
+						<canvas class="local-hold" id="localHold" width="60" height="60"></canvas>
+						<canvas class="local-item" id="localItem" width="60" height="60"></canvas>
+						<canvas class="local-board" id="localBoard" width="200" height="440"></canvas>
+						<canvas class="local-bag" id="localBag" width="60" height="440"></canvas>
+					</td>
+					<td class="remote-boards-container">
+						<table>
+							<tr class="remoteRow1">
+								<td class="remote"><canvas class="remote" id="remoteBoard0" width="100" height="220"></canvas></td>
+								<td class="remote"><canvas class="remote" id="remoteBoard1" width="100" height="220"></canvas></td>
+								<td class="remote"><canvas class="remote" id="remoteBoard2" width="100" height="220"></canvas></td>
+							</tr>
+							<tr>
+								<td class="remote"><canvas class="remote" id="remoteBoard3" width="100" height="220"></canvas></td>
+								<td class="remote"><canvas class="remote" id="remoteBoard4" width="100" height="220"></canvas></td>
+							</tr>
+						</table>
+					</td>
+				</tr></table>
+			</td>
+			<td class="stands right">
+				<div class="spectators" id="spectators"></div>
+				<div class="chat" id="chat"></div>
+				<div class="entry"><input type="text" id="entry"></div>
+			</td>
+		<tr>
+		<td class="footer" colspan="2">Footer</td></tr>
+	</table>
+	
+	</div>
+	
+	<div class="work-area initially-hidden">
+	
+	<div id="gameListItemTemplate" class="gameListItem">
+		<span class="title">Title</span>
+		<button class="join">Join</button>
+	</div>
+	
+	</div>
+</body>
+</html>
