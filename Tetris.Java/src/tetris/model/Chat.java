@@ -7,6 +7,8 @@ import java.util.List;
 
 public class Chat extends Model
 {
+	public static final int DIRTY = 0x01;
+	
 	static final int MAX_CHAT_SIZE = 50;
 	
 	List<String> chatter = new ArrayList<String>();
@@ -21,6 +23,8 @@ public class Chat extends Model
 	{
 		chatter.add(text);
 		prune();
+
+		getFlags().mark(DIRTY);
 	}
 	
 	public void receiveChat (String text)
@@ -38,5 +42,10 @@ public class Chat extends Model
 	{
 		while (chatter.size() > MAX_CHAT_SIZE)
 			chatter.remove(0);
+	}
+	
+	public List<String> getChatter ()
+	{
+		return chatter;
 	}
 }

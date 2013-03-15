@@ -6,7 +6,7 @@ import tetris.model.Model;
 
 public class View extends ViewPlatform
 {
-	Model model;
+	protected Model model;
 	KeyListener keyListener;
 
 	public View (Model model)

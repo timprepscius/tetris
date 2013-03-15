@@ -177,4 +177,8 @@ public class Bridge
 	    
 	    $wnd.$('#localBoardContainer').click(function() { window.onGameFocus(); });
 	}-*/;
+
+	public static native void setChatText(String text) /*-{
+		$wnd.$('#chat').html($wnd.htmlForTextWithEmbeddedNewlines(text));
+	}-*/;
 }

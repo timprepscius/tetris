@@ -8,8 +8,10 @@ import tetris.network.message.MsgChat;
 
 public class ChatNet extends Net
 {
-	public ChatNet(Model model, Connection connection) {
+	public ChatNet(Model model, Connection connection) 
+	{
 		super(model, connection);
+		connection.addReceiver(this);
 	}
 
 	public void sendChat(String text) 

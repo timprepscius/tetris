@@ -4,10 +4,13 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import core.util.Strings;
 import core.util.Ticker;
 
+import tetris.model.Chat;
 import tetris.model.GameInfo;
 import tetris.network.Message;
+import tetris.network.message.MsgChat;
 import tetris.network.message.MsgEnterGame;
 import tetris.network.message.MsgGameBegin;
 import tetris.network.message.MsgGameCountDown;
@@ -19,6 +22,7 @@ public class Game
 {
 	GameInfo info;
 	List<Player> players = new ArrayList<Player>();
+	Chat chat = new Chat();
 
 	Ticker countDownTicker = new Ticker(1000);	
 	int countDown = -1;
@@ -65,6 +69,17 @@ public class Game
 				);
 			}
 		}
+		
+		player.getConnection().sendMessage(
+			postProcessMessage(
+				new MsgChat(Strings.concat(chat.getChatter(), "\n"))
+			)
+		);
+	}
+	
+	public void onChat (Player player, Message message)
+	{
+		chat.receiveChat(((MsgChat)message).getText());
 	}
 	
 	public void handleMessage (Player player, Message message)
@@ -84,6 +99,9 @@ public class Game
 			break;
 		case PING:
 			onTick();
+			break;
+		case CHAT:
+			onChat(player, message);
 			break;
 		default:
 			// nothing to do
