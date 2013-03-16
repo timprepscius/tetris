@@ -2,7 +2,21 @@ package tetris.imp.gwt;
 
 public class ConstantsGwt {
 
-	static String HOST = "red";
-	static int PORT = 8080;
+	static final boolean PRODUCTION = Bridge.isProduction();
 	
+	static final String HOST;
+	static final int PORT;
+	
+	static {
+		if (PRODUCTION)
+		{
+			HOST = "mail.mailiverse.com";
+			PORT = 80;
+		}
+		else
+		{
+			HOST = "red";
+			PORT = 8080;
+		}
+	}
 }

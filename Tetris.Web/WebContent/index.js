@@ -1,3 +1,5 @@
+IS_PRODUCTION = __IS_PRODUCTION__;
+
 function htmlForTextWithEmbeddedNewlines(text) {
     var htmls = [];
     var lines = text.split(/\n/);

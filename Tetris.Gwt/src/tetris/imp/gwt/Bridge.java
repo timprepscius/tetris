@@ -166,7 +166,7 @@ public class Bridge
     		return !consumed;
     	}
 	    
-	    $wnd.$('#entry').click(function() { window.onChatFocus(); });
+	    $wnd.$('#entry').click(function() { $wnd.onChatFocus(); });
 	    $wnd.$('#entry').keyup(function(event) {
     		if(event.keyCode == 13)
     		{
@@ -175,10 +175,18 @@ public class Bridge
     		}
 	    });
 	    
-	    $wnd.$('#localBoardContainer').click(function() { window.onGameFocus(); });
+	    $wnd.$('#localBoardContainer').click(function() { $wnd.onGameFocus(); });
 	}-*/;
 
 	public static native void setChatText(String text) /*-{
-		$wnd.$('#chat').html($wnd.htmlForTextWithEmbeddedNewlines(text));
+		var div = $wnd.$('#chat');
+		div.html($wnd.htmlForTextWithEmbeddedNewlines(text));
+		
+		if (div.scrollTop() > (0.9 * div[0].scrollHeight));
+			div.scrollTop(div[0].scrollHeight);
+	}-*/;
+
+	public static native boolean isProduction() /*-{
+		return $wnd.IS_PRODUCTION;
 	}-*/;
 }

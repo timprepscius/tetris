@@ -1,0 +1,19 @@
+#!/bin/bash
+
+V=`date "+%Y%m%d_%H%M%S"`
+M=true
+D=www
+
+rsync -avL --exclude="WEB-INF" --delete ../Tetris.Gwt/war/ ./$D/
+
+function replaceStrings() {
+	sed -i '' -e s/__VERSION__/$V/g $1
+	sed -i '' -e s/__THIS_YEAR__/2013/g $1
+	sed -i '' -e s/__IS_PRODUCTION__/$M/g $1
+}
+
+echo Replacing Strings
+replaceStrings $D/index.html
+replaceStrings $D/index.js
+replaceStrings $D/index.css
+

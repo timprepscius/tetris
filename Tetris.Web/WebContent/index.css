@@ -140,10 +140,13 @@ canvas.remote {
 .stands .chat {
 	height:300px;	
 	background-color:green;
+	text-align: left;
+	overflow-y: scroll;
+	word-wrap: break-word;
 }
 
 .stands .entry {
-	height:40px;
+	height:60px;
 	background-color:grey;
 }
 

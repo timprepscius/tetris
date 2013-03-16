@@ -1,2 +1,2 @@
-scp Tetris.WebServer.war tomcat@red:Tetris.war
+scp Tetris.WebServer.war tomcat@blue:Tetris.war
 

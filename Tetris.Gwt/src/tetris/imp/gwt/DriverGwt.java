@@ -25,7 +25,10 @@ public class DriverGwt
         tetris.setNet(
         	NetFactory.getInstance().instantiateFor(
                 tetris, 
-                connectionFactory.newConnection(ConstantsGwt.HOST, ConstantsGwt.PORT)
+                connectionFactory.newConnection(
+                	ConstantsGwt.HOST, 
+                	ConstantsGwt.PORT
+                )
             )
         );
         
