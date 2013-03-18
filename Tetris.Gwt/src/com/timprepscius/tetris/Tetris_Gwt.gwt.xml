@@ -18,6 +18,8 @@
   <!-- Specify the paths for translatable code                    -->
   <source path='client'/>
 
+<!-- 
   <set-property name="user.agent" value="safari" />   
-
+ -->
+ 
 </module>
