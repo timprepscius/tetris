@@ -4,7 +4,8 @@ V=`date "+%Y%m%d_%H%M%S"`
 M=false
 D=dev-www
 
-rsync -avL --exclude="WEB-INF" --delete ../Tetris.Gwt/war/ ./$D/
+mkdir $D
+rsync -avL --exclude="WEB-INF" --delete stage/ ./$D/
 
 function replaceStrings() {
 	sed -i '' -e s/__VERSION__/$V/g $1

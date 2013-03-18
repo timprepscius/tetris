@@ -23,7 +23,7 @@ public class ColorGwtOptimized extends ColorGwt
 	public ColorGwt makeBrighter() 
 	{
 		if (brighter == null)
-			brighter = makeBrighter();
+			brighter = super.makeBrighter();
 		
 		return brighter;
 	}

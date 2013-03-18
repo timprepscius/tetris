@@ -30,14 +30,20 @@ public class PieceRendererGwt
 		return defaultGhostColor;
 	}
 	
-	public void drawPiece (CanvasInfoGwt canvas, Piece piece, BoardMatrix b, boolean isGhost)
+	public void drawPiece (
+		CanvasInfoGwt canvas, Piece piece, 
+		BoardMatrix b, boolean isGhost
+	)
 	{
 		for (int i = 0; i < 4; ++i) 
 		{
 			int x = piece.X(i);
 			int y = piece.Y(i);
 			
-			ColorGwt color = isGhost ? getGhostColor() : getColor(piece.getShape());
+			ColorGwt color = 
+				isGhost ? 
+					getGhostColor() : 
+					getColor(piece.getShape());
 			
 			drawBlock(
 				canvas,
@@ -59,7 +65,10 @@ public class PieceRendererGwt
 		}
 	}
 
-	public void drawBlock (CanvasInfoGwt canvas, ColorGwt color, int x, int y, BoardMatrix b)
+	public void drawBlock (
+		CanvasInfoGwt canvas, ColorGwt color, int x, int y, 
+		BoardMatrix b
+	)
 	{
 		float bx = b.mx * x + b.ax;
 		float by = b.my * y + b.ay;
