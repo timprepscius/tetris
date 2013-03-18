@@ -1,0 +1,1 @@
+../../Tetris.Web/WebContent/index.js
