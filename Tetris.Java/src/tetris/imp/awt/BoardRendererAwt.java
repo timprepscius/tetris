@@ -7,7 +7,7 @@ import java.awt.Graphics;
 import tetris.model.Board;
 import tetris.model.Piece;
 import tetris.model.Shape;
-import tetris.renderer.BoardRenderer;
+import tetris.view.BoardRenderer;
 import tetris.view.BoardView;
 import tetris.view.View;
 

@@ -6,26 +6,28 @@ import tetris.model.Shape;
 
 public class PieceRendererGwt 
 {
-	static String defaultColors[] = new String[] {
-		"green", 
-		"blue", 
-		"indigo", 
-		"orange", 
-		"red", 
-		"purple", 
-		"maroon", 
-		"black", 
-		"magenta"
+	static ColorGwt defaultColors[] = new ColorGwt[] {
+		new ColorGwtOptimized(255,0,0),
+		new ColorGwtOptimized(0,255,0),
+		new ColorGwtOptimized(0,0,255),
+		new ColorGwtOptimized(128,128,0),
+		new ColorGwtOptimized(0,128,128),
+		new ColorGwtOptimized(64,200,64),
+		new ColorGwtOptimized(36,100,22),
+		new ColorGwtOptimized(100,36,22),
+		new ColorGwtOptimized(36,22,100),
 	};
+	
+	static ColorGwt defaultGhostColor = new ColorGwtOptimized (128,128,128);
 
-	public String getColor (Shape shape)
+	public ColorGwt getColor (Shape shape)
 	{
 		return defaultColors[shape.ordinal()];
 	}
 	
-	public String getGhostColor ()
+	public ColorGwt getGhostColor ()
 	{
-		return "grey";
+		return defaultGhostColor;
 	}
 	
 	public void drawPiece (CanvasInfoGwt canvas, Piece piece, BoardMatrix b, boolean isGhost)
@@ -35,10 +37,13 @@ public class PieceRendererGwt
 			int x = piece.X(i);
 			int y = piece.Y(i);
 			
+			ColorGwt color = isGhost ? getGhostColor() : getColor(piece.getShape());
+			
 			drawBlock(
 				canvas,
-				isGhost ? getGhostColor() : getColor(piece.getShape()),
-				x, y, b
+				color,
+				x, y, 
+				b
 			);
 		}
 	}
@@ -54,17 +59,18 @@ public class PieceRendererGwt
 		}
 	}
 
-	public void drawBlock (CanvasInfoGwt canvas, String color, int x, int y, BoardMatrix b)
+	public void drawBlock (CanvasInfoGwt canvas, ColorGwt color, int x, int y, BoardMatrix b)
 	{
 		float bx = b.mx * x + b.ax;
 		float by = b.my * y + b.ay;
 		
 		drawBlockWithBevel(
 			canvas.context, 
-			color,
+			color.getString(),
 			bx, by, 
 			b.pw, b.ph, 
-			0.05f
+			0.05f,
+			color.makeBrighter().getString()
 		);
 	}
 	
@@ -75,11 +81,18 @@ public class PieceRendererGwt
 		canvas.clear(bx, by, b.pw, b.ph);
 	}
 	
-	public native void drawBlockWithBevel(Object context, Object color, float x, float y, float w, float h, float b) /*-{
-	    context.globalAlpha = 1;
+	public native void drawBlockWithBevel(
+		Object context, String color, 
+		float x, float y, float w, float h, 
+		float bevel, String bevelColor
+	) /*-{
 	    context.fillStyle = color;
 	    context.fillRect(x, y, w, h);
-	    context.fillRect(x + (b*w), y + (b*h), w - (2*b*w), h - (2*b*h));
+	    context.fillStyle = bevelColor;
+	    context.fillRect(
+	    	x + (bevel*w), y + (bevel*h), 
+	    	w - (2*bevel*w), h - (2*bevel*h)
+	    );
 	}-*/;
 
 

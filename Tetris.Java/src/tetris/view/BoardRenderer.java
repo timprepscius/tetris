@@ -1,7 +1,6 @@
-package tetris.renderer;
+package tetris.view;
 
 import tetris.model.Board;
-import tetris.view.BoardView;
 
 public interface BoardRenderer
 {

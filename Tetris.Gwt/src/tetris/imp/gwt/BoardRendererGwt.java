@@ -4,7 +4,7 @@ import tetris.model.Board;
 import tetris.model.BoardMatrix;
 import tetris.model.LocalBoard;
 import tetris.model.Shape;
-import tetris.renderer.BoardRenderer;
+import tetris.view.BoardRenderer;
 import tetris.view.BoardView;
 
 public class BoardRendererGwt implements BoardRenderer

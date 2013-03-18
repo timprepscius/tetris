@@ -2,7 +2,6 @@ package tetris.view;
 
 import tetris.model.LocalBoard;
 import tetris.model.Model;
-import tetris.renderer.BoardRenderer;
 
 public class LocalBoardView extends BoardView
 {

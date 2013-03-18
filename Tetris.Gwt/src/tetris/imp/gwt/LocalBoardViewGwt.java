@@ -1,7 +1,7 @@
 package tetris.imp.gwt;
 
 import tetris.model.Model;
-import tetris.renderer.BoardRenderer;
+import tetris.view.BoardRenderer;
 import tetris.view.LocalBoardView;
 
 public class LocalBoardViewGwt extends LocalBoardView

@@ -4,7 +4,6 @@ import tetris.model.Board;
 import tetris.model.Model;
 import tetris.model.Piece;
 import tetris.model.Shape;
-import tetris.renderer.BoardRenderer;
 
 public class BoardView extends View
 {

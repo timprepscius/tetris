@@ -2,7 +2,6 @@ package tetris.view;
 
 import tetris.model.Model;
 import tetris.model.RemoteBoard;
-import tetris.renderer.BoardRenderer;
 
 public class RemoteBoardView extends BoardView
 {

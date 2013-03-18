@@ -1,4 +1,4 @@
-package tetris.operation;
+package tetris.model.operation;
 
 import tetris.model.Board;
 import tetris.model.Piece;

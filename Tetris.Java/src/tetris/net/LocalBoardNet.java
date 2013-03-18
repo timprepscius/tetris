@@ -2,11 +2,11 @@ package tetris.net;
 
 import tetris.model.Board;
 import tetris.model.LocalBoard;
+import tetris.model.operation.BoardSync;
+import tetris.model.operation.CurrentPiece;
 import tetris.network.Connection;
 import tetris.network.Message;
 import tetris.network.message.MsgGameEnd;
-import tetris.operation.BoardSync;
-import tetris.operation.CurrentPiece;
 
 public class LocalBoardNet extends Net
 {

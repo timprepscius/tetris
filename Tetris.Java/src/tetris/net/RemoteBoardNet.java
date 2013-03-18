@@ -1,11 +1,11 @@
 package tetris.net;
 
 import tetris.model.RemoteBoard;
+import tetris.model.operation.BoardSync;
+import tetris.model.operation.CurrentPiece;
 import tetris.network.Message;
 import tetris.network.PlayerConnection;
 import tetris.network.message.MsgGeneric;
-import tetris.operation.BoardSync;
-import tetris.operation.CurrentPiece;
 
 public class RemoteBoardNet extends Net
 {
