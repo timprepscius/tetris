@@ -3,11 +3,9 @@ package tetris.network.message;
 import java.util.ArrayList;
 import java.util.List;
 
-import core.util.Base16;
-import core.util.Strings;
-
+import core.io.In;
+import core.io.Out;
 import tetris.model.GameInfo;
-import tetris.network.ID;
 import tetris.network.Message;
 import tetris.network.MessageType;
 
@@ -25,33 +23,26 @@ public class MsgListGamesResult extends Message
 		infos.add(info);
 	}
 
-	public byte[] serialize ()
+	@Override
+	public void serialize (Out out)
 	{
-		ArrayList<String> s = new ArrayList<String>();
+		out.writeInteger(infos.size());
+
 		for (GameInfo info : infos)
 		{
-			s.add(Base16.encode(info.id.toByteArray()) + ", " + info.name + ", " + info.numPlayers);
+			info.serialize(out);
 		}
 		
-		return Strings.toBytes(Strings.concat(s, "|"));
 	}
 	
-	public void deserialize (byte[] bytes)
+	@Override
+	public void deserialize (In in)
 	{
-		String s = Strings.toString(bytes);
-		if (s.isEmpty())
-			return ;
-		
-		String parts[] = s.split("\\|");
-		
-		for (String part : parts)
+		int numInfos = in.readInteger();
+		for (int i=0; i<numInfos; ++i)
 		{
-			String sub[] = part.split(",");
-			
 			GameInfo info = new GameInfo();
-			info.id = ID.fromByteArray(Base16.decode(sub[0].trim()));
-			info.name = sub[1].trim();
-			info.numPlayers = Integer.parseInt(sub[2].trim());
+			info.deserialize(in);
 			infos.add(info);
 		}
 	}

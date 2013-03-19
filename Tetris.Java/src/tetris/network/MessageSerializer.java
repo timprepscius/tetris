@@ -1,47 +1,43 @@
 package tetris.network;
 
 import tetris.network.message.MsgFactory;
-import core.util.Base16;
+import core.io.In;
+import core.io.Out;
 import core.util.LogOut;
-import core.util.Strings;
 
 public class MessageSerializer
 {
 	static LogOut log = new LogOut(MessageSerializer.class);
 	
-	public Message deserialize (byte[] bytes)
+	public Message deserialize (String string)
 	{
-		String s = Strings.toString(bytes);
-		s = s.substring(0, s.indexOf('!'));
-		String[] p = s.split(",");
+		string = string.substring(0, string.indexOf("!"));
+		In in = new In(string);
 		
-		MessageType type = MessageType.values()[Integer.parseInt(p[0].trim())];
+		MessageType type = MessageType.values()[in.readInteger()];
 		Message message = MsgFactory.instantiate(type);
 		
-		message.setConsoleID(ID.fromByteArray(Base16.decode(p[1].trim())));
-		message.setGameID(ID.fromByteArray(Base16.decode(p[2].trim())));
-		message.setPlayerID(ID.fromByteArray(Base16.decode(p[3].trim())));
-		message.deserialize(Base16.decode(p[4].trim()));
+		message.setConsoleID(ID.fromByteArray(in.readBytes()));
+		message.setGameID(ID.fromByteArray(in.readBytes()));
+		message.setPlayerID(ID.fromByteArray(in.readBytes()));
+		message.deserialize(in);
 		
 		log.debug("deserialized:", message);
 		
 		return message;
 	}
 
-	public byte[] serialize (Message message)
+	public String serialize (Message message)
 	{
 		log.debug("serializing:", message);
 		
-		byte[] bytes = message.serialize();
+		Out out = new Out();
+		out.writeInteger(message.type);
+		out.writeBytes((message.getConsoleID()!=null) ? message.getConsoleID().toByteArray() : null);
+		out.writeBytes((message.getGameID()!=null) ? message.getGameID().toByteArray() : null);
+		out.writeBytes((message.getPlayerID()!=null) ? message.getPlayerID().toByteArray() : null);
+		message.serialize(out);
 		
-		String s = 
-			message.type + ", " + 
-			((message.getConsoleID()!=null) ? Base16.encode(message.getConsoleID().toByteArray()) : "") + ", " +
-			((message.getGameID()!=null) ? Base16.encode(message.getGameID().toByteArray()) : "") + ", " +
-			((message.getPlayerID()!=null) ? Base16.encode(message.getPlayerID().toByteArray()) : "") + ", " +
-			((bytes != null) ? Base16.encode(bytes) : "") +
-			"!";
-		
-		return Strings.toBytes(s);
+		return out.toString() + "!";
 	}
 }

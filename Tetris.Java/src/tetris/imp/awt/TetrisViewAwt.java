@@ -8,6 +8,7 @@ import javax.swing.Timer;
 import tetris.model.Tetris;
 import tetris.view.TetrisView;
 
+@SuppressWarnings("serial")
 public class TetrisViewAwt extends TetrisView implements ActionListener 
 {
 	Timer timer;

@@ -71,9 +71,9 @@ public class ConnectionMina implements Connection
 		receivers.remove(receiver);
 	}
 	
-    public void send (byte[] bytes)
+    public void send (String string)
     {
-		log.debug("S:" + Strings.toString(bytes));
+		log.debug("S:" + string);
 
 		/*
 		IoBuffer out = IoBuffer.allocate(bytes.length);
@@ -82,7 +82,7 @@ public class ConnectionMina implements Connection
         out.flip();
         */
 		
-        session.write(Strings.toString(bytes) + "\n");
+        session.write(string + "\n");
     }
 
 	@Override
@@ -98,7 +98,7 @@ public class ConnectionMina implements Connection
 		
 		log.debug("R:" + s);
 		
-		Message message = serializer.deserialize(Strings.toBytes(s));
+		Message message = serializer.deserialize(s);
 		MessageReceiver[] safe = receivers.toArray(new MessageReceiver[0]);
 		for (MessageReceiver receiver : safe)
 			receiver.onMessage(this, message);

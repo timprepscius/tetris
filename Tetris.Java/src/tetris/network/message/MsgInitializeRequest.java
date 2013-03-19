@@ -1,6 +1,7 @@
 package tetris.network.message;
 
-import core.util.Strings;
+import core.io.In;
+import core.io.Out;
 import tetris.network.Message;
 import tetris.network.MessageType;
 
@@ -19,13 +20,14 @@ public class MsgInitializeRequest extends Message
 		this.token = token;
 	}
 	
-	public byte[] serialize ()
+	@Override
+	public void serialize (Out out)
 	{
-		return Strings.toBytes(token);
+		out.writeString(token);
 	}
 	
-	public void deserialize(byte[] bytes)
+	public void deserialize(In in)
 	{
-		token = Strings.toString(bytes);
+		token = in.readString();
 	}
 }

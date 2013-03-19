@@ -1,6 +1,7 @@
 package tetris.network.message;
 
-import core.util.Strings;
+import core.io.In;
+import core.io.Out;
 import tetris.network.Message;
 import tetris.network.MessageType;
 
@@ -18,14 +19,16 @@ public class MsgChat extends Message
 		this.text = text;
 	}
 	
-	public byte[] serialize()
+	@Override
+	public void serialize(Out out)
 	{
-		return Strings.toBytes(text);
+		out.writeString(text);
 	}
 	
-	public void deserialize(byte[] bytes)
+	@Override
+	public void deserialize(In in)
 	{
-		text = Strings.toString(bytes);
+		text = in.readString();
 	}
 	
 	public String getText()

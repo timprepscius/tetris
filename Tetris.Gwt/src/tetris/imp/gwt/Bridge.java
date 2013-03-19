@@ -84,7 +84,10 @@ public class Bridge
 		ChatViewGwt.getInstance().requestFocus();
 	}
 
-	public static native JavaScriptObject createGameListItem (GameListViewGwt _parent, String _id, String title) /*-{
+	public static native JavaScriptObject createGameListItem (
+		GameListViewGwt _parent, 
+		String _id, String title
+	) /*-{
 		var parent = _parent;
 		var id = _id;
 		

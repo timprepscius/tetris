@@ -1,5 +1,7 @@
 package tetris.network.message;
 
+import core.io.In;
+import core.io.Out;
 import tetris.network.Message;
 import tetris.network.MessageType;
 
@@ -18,14 +20,16 @@ public class MsgGeneric extends Message
 		super(messageType);
 	}
 
-	public byte[] serialize ()
+	@Override
+	public void serialize (Out out)
 	{
-		return bytes;
+		out.writeBytes(bytes);
 	}
 
-	public void deserialize(byte[] bytes)
+	@Override
+	public void deserialize(In in)
 	{
-		this.bytes = bytes;
+		bytes = in.readBytes();
 	}
 	
 	public byte[] getBytes ()

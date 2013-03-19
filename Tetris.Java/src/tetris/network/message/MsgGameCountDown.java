@@ -1,6 +1,7 @@
 package tetris.network.message;
 
-import core.util.Strings;
+import core.io.In;
+import core.io.Out;
 import tetris.network.Message;
 import tetris.network.MessageType;
 
@@ -19,14 +20,15 @@ public class MsgGameCountDown extends Message
 		this.countdown = countdown;
 	}
 	
-	public byte[] serialize ()
+	@Override
+	public void serialize (Out out)
 	{
-		return ("" + countdown).getBytes();
+		out.writeInteger(countdown);
 	}
 	
-	public void deserialize (byte[] bytes)
+	public void deserialize (In in)
 	{
-		countdown = Integer.parseInt(Strings.toString(bytes));
+		countdown = in.readInteger();
 	}
 	
 	public int getCountDown ()

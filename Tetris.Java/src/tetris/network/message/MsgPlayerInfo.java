@@ -1,9 +1,8 @@
 package tetris.network.message;
 
-import core.util.Base16;
-import core.util.Strings;
+import core.io.In;
+import core.io.Out;
 import tetris.model.PlayerInfo;
-import tetris.network.ID;
 import tetris.network.Message;
 import tetris.network.MessageType;
 
@@ -33,18 +32,17 @@ public class MsgPlayerInfo extends Message
 		super(MessageType.PLAYER_INFO);
 	}
 	
-	public byte[] serialize ()
+	@Override
+	public void serialize (Out out)
 	{
-		String s = Base16.encode(playerInfo.id.toByteArray()) + ", " + playerInfo.name;
-		return Strings.toBytes(s);
+		playerInfo.serialize(out);
 	}
 	
-	public void deserialize (byte[] bytes)
+	@Override
+	public void deserialize (In in)
 	{
-		String p[] = Strings.toString(bytes).split(",");
 		playerInfo = new PlayerInfo();
-		playerInfo.id = ID.fromByteArray(Base16.decode(p[0].trim()));
-		playerInfo.name = p[1].trim();
+		playerInfo.deserialize(in);
 	}
 	
 	public PlayerInfo getPlayerInfo ()

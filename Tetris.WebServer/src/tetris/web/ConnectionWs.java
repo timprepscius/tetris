@@ -49,7 +49,7 @@ class ConnectionWs extends MessageInbound implements Connection
 		*/
 		
 		log.debug(this, "onTextMessage", string);
-		Message message = serializer.deserialize(Strings.toBytes(string));
+		Message message = serializer.deserialize(string);
 		receiver.onMessage(this, message);
 	}
 
@@ -92,7 +92,7 @@ class ConnectionWs extends MessageInbound implements Connection
 		try
 		{
 			this.getWsOutbound().writeTextMessage(
-				CharBuffer.wrap(Strings.toString(serializer.serialize(message)).toCharArray())
+				CharBuffer.wrap(serializer.serialize(message).toCharArray())
 			);
 		}
 		catch (IOException e)

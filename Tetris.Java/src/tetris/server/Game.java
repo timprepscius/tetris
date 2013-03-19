@@ -34,7 +34,6 @@ public class Game
 	
 	public GameInfo getInfo()
 	{
-		info.numPlayers = players.size();
 		return info;
 	}
 	
@@ -59,6 +58,7 @@ public class Game
 	{
 		players.add(player);
 		player.currentGame = info.id;
+		info.players.add(player.getInfo());
 
 		for (Player other : players)
 		{

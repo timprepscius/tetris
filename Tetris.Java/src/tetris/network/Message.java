@@ -1,5 +1,8 @@
 package tetris.network;
 
+import core.io.In;
+import core.io.Out;
+
 public class Message
 {
 	protected int type;
@@ -51,12 +54,11 @@ public class Message
 		return values[type];
 	}
 	
-	public void deserialize(byte[] bytes)
+	public void deserialize(In in)
 	{
 	}
 
-	public byte[] serialize()
+	public void serialize(Out out)
 	{
-		return null;
 	}
 }

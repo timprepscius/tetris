@@ -5,7 +5,6 @@ import java.util.List;
 
 import com.google.gwt.core.client.JavaScriptObject;
 
-import core.util.Strings;
 import tetris.network.ConnectionAdapter;
 import tetris.network.Message;
 import tetris.network.MessageSerializer;
@@ -47,7 +46,7 @@ public class ConnectionGwt extends ConnectionAdapter
 	@Override
 	public void sendMessage(Message message) 
 	{
-		sendMessage(Strings.toString(serializer.serialize(message)));
+		sendMessage(serializer.serialize(message));
 	}
 		
 	public void onClose ()
@@ -57,7 +56,7 @@ public class ConnectionGwt extends ConnectionAdapter
 
 	public void onMessage (String message)
 	{
-		super.onMessage(null, serializer.deserialize(Strings.toBytes(message)));
+		super.onMessage(null, serializer.deserialize(message));
 	}
 	
 	public void sendMessage (String message)
