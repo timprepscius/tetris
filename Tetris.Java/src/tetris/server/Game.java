@@ -50,15 +50,15 @@ public class Game
 	
 	public Message postProcessMessage (Message message)
 	{
-		message.setGameID(info.id);
+		message.setGameID(info.getID());
 		return message;
 	}
 	
 	public void handleEnter (Player player)
 	{
 		players.add(player);
-		player.currentGame = info.id;
-		info.players.add(player.getInfo());
+		player.currentGame = info.getID();
+		info.getPlayers().add(player.getInfo());
 
 		for (Player other : players)
 		{
@@ -155,7 +155,7 @@ public class Game
 	public void onCloseConnection(Player player)
 	{
 		Message message = new MsgLeaveGame();
-		message.setGameID(info.id);
+		message.setGameID(info.getID());
 		message.setPlayerID(player.id);
 		handleMessage(player, message);
 	}

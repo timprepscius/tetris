@@ -12,6 +12,9 @@
   <inherits name='core.GWT'/>
   <inherits name='tetris.GWT'/>
 
+  <inherits name='org.timepedia.exporter.Exporter'/>
+  <set-property name="export" value="yes"/>  
+
   <!-- Specify the app entry point class.                         -->
   <entry-point class='com.timprepscius.tetris.client.Tetris_Gwt'/>
 

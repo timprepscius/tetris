@@ -15,5 +15,6 @@
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="lib/gwtexporter-2.5.0-fake.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

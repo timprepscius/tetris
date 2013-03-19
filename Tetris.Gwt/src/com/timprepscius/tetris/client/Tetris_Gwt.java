@@ -1,7 +1,8 @@
 package com.timprepscius.tetris.client;
 
-import tetris.imp.gwt.DriverGwt;
+import org.timepedia.exporter.client.ExporterUtil;
 
+import tetris.imp.gwt.DriverGwt;
 import com.google.gwt.core.client.EntryPoint;
 
 /**
@@ -16,6 +17,7 @@ public class Tetris_Gwt implements EntryPoint
 	 */
 	public void onModuleLoad() 
 	{
+		ExporterUtil.exportAll();
 		driver.main(); 
 	}
 }

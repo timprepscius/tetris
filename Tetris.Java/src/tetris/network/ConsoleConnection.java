@@ -1,5 +1,7 @@
 package tetris.network;
 
+import tetris.model.ID;
+
 public class ConsoleConnection extends ConnectionAdapter
 {
 	ID consoleID;

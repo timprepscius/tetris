@@ -12,13 +12,13 @@ public class TetrisViewGwt extends TetrisView
 	
 	public void onJoinGame ()
 	{
-		Bridge.hide(Bridge.chooseRoomContainer);
-		Bridge.show(Bridge.playContainer);
+		Bridge.invoke(Bridge.chooseRoomContainer, "hide");
+		Bridge.invoke(Bridge.playContainer, "show");
 	}
 	
 	public void onLeaveGame ()
 	{
-		Bridge.hide(Bridge.playContainer);
-		Bridge.hide(Bridge.chooseRoomContainer);
+		Bridge.invoke(Bridge.playContainer, "hide");
+		Bridge.invoke(Bridge.chooseRoomContainer, "show");
 	}
 }

@@ -1,9 +1,9 @@
 package tetris.imp.gwt;
 
+import tetris.model.ID;
 import tetris.model.Tetris;
 import tetris.net.NetFactory;
 import tetris.network.ConnectionFactory;
-import tetris.network.ID;
 import tetris.view.ViewFactory;
 
 public class DriverGwt 

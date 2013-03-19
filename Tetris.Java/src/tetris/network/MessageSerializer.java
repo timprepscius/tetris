@@ -1,5 +1,6 @@
 package tetris.network;
 
+import tetris.model.ID;
 import tetris.network.message.MsgFactory;
 import core.io.In;
 import core.io.Out;

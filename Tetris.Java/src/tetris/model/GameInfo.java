@@ -1,5 +1,8 @@
 package tetris.model;
 
+import org.timepedia.exporter.client.Exportable;
+import org.timepedia.exporter.client.Export;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,16 +10,65 @@ import core.io.IO;
 import core.io.In;
 import core.io.Out;
 
-import tetris.network.ID;
-
-public class GameInfo implements IO
+@Export
+public class GameInfo implements IO, Exportable
 {
-	public ID id;
-	public String name;
+	protected ID id;
+	protected String name;	
+	protected int maxPlayers;
+	protected boolean watchable;
+	protected List<PlayerInfo> players = new ArrayList<PlayerInfo>();
 	
-	public int maxPlayers;
-	public boolean watchable;
-	public List<PlayerInfo> players = new ArrayList<PlayerInfo>();
+	public ID getID() 
+	{
+		return id;
+	}
+
+	public void setID(ID id) 
+	{
+		this.id = id;
+	}
+
+	public String getName() 
+	{
+		return name;
+	}
+
+	public void setName(String name) 
+	{
+		this.name = name;
+	}
+
+
+	public int getMaxPlayers() 
+	{
+		return maxPlayers;
+	}
+
+	public void setMaxPlayers(int maxPlayers) 
+	{
+		this.maxPlayers = maxPlayers;
+	}
+
+	public boolean isWatchable() 
+	{
+		return watchable;
+	}
+
+	public void setWatchable(boolean watchable) 
+	{
+		this.watchable = watchable;
+	}
+
+	public void setPlayers(List<PlayerInfo> players) 
+	{
+		this.players = players;
+	}
+
+	public List<PlayerInfo> getPlayers ()
+	{
+		return players;
+	}
 	
 	@Override
 	public void deserialize(In in) 

@@ -43,7 +43,7 @@ public class GameListViewAwt extends GameListView
 		
 		for (GameInfo info : getModel().getGames())
 		{
-			listModel.addElement(info.name);
+			listModel.addElement(info.getName());
 		}
 	}
 	

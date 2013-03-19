@@ -14,5 +14,6 @@
 	<classpathentry kind="lib" path="/Applications/eclipse/plugins/com.google.gwt.eclipse.sdkbundle_2.5.1/gwt-2.5.1/validation-api-1.0.0.GA-sources.jar"/>
 	<classpathentry kind="lib" path="/Applications/eclipse/plugins/com.google.gwt.eclipse.sdkbundle_2.5.1/gwt-2.5.1/validation-api-1.0.0.GA.jar" sourcepath="/Applications/eclipse/plugins/com.google.gwt.eclipse.sdkbundle_2.5.1/gwt-2.5.1/validation-api-1.0.0.GA-sources.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="lib/gwtexporter-2.5.0-SNAPSHOT.jar"/>
 	<classpathentry kind="output" path="war/WEB-INF/classes"/>
 </classpath>

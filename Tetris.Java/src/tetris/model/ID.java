@@ -1,4 +1,4 @@
-package tetris.network;
+package tetris.model;
 
 import core.util.Base16;
 import core.util.FastRandom;

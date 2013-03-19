@@ -3,13 +3,23 @@ package tetris.imp.gwt;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.timepedia.exporter.client.Export;
+import org.timepedia.exporter.client.Exportable;
+
 import tetris.imp.view.ViewPlatform;
+import tetris.model.GameInfo;
+import tetris.model.ID;
 import tetris.model.KeyState;
+
 import com.google.gwt.core.client.JavaScriptObject;
 
-public class Bridge 
+@Export
+public class Bridge implements Exportable
 {
+	public static ViewPlatform focus;
 	public static JavaScriptObject 
+	
+		delegate,
 		chooseRoomContainer,
 		playContainer,
 		countdown,
@@ -20,22 +30,36 @@ public class Bridge
 		localHold,
 		remoteBoards[];
 	
-	public static ViewPlatform focus;
-	
 	public static native JavaScriptObject getElement (String id) /*-{
 		return $wnd.$('#'+id);
 	}-*/;
 	
+	public static native JavaScriptObject getScriptObject (String id) /*-{
+		return $wnd[id];
+	}-*/;
+	
+	public static Object invoke (Object oo, String f, Object...p)
+	{
+		return JSInvoker.invokeR(oo, f, p);
+	}
+	
+	public static Object invoke (Object oo, String f)
+	{
+		return JSInvoker.invokeR(oo, f);
+	}
+
 	public static void link ()
 	{
 		chooseRoomContainer = getElement("chooseRoomContainer");
 		playContainer = getElement("playContainer");
 		
+		delegate = getScriptObject("delegate");
 		countdown = getElement("countdown");
 		gameList = getElement("gameList");
 		localBoard = getElement("localBoard");
 		localBag = getElement("localBag");
 		localHold = getElement("localHold");
+		
 		remoteBoards = new JavaScriptObject[5];
 		for (int i=0; i<Bridge.remoteBoards.length; ++i)
 			remoteBoards[i] = getElement("remoteBoard" + i);
@@ -74,6 +98,11 @@ public class Bridge
 			focus.onText(string);
 	}
 	
+	public static void onJoin(GameListViewGwt gameListView, ID id)
+	{
+		gameListView.onJoin(id);
+	}
+	
 	public static void onGameFocus ()
 	{
 		LocalBoardViewGwt.getInstance().requestFocus();
@@ -84,110 +113,18 @@ public class Bridge
 		ChatViewGwt.getInstance().requestFocus();
 	}
 
-	public static native JavaScriptObject createGameListItem (
-		GameListViewGwt _parent, 
-		String _id, String title
-	) /*-{
-		var parent = _parent;
-		var id = _id;
-		
-		var i = $wnd.$('#gameListItemTemplate').clone();
-		i.find('.title').text(title);
-		i.find('.join').click(function() { $entry(@tetris.imp.gwt.GameListViewGwt::onJoin(Ljava/lang/Object;Ljava/lang/String;))(parent, id); });
-		return i;
-	}-*/;
+	public static Object createGameListItem (GameListViewGwt parent, GameInfo info) 
+	{
+		return invoke(delegate, "createGameListItem", parent, info);
+	}
 	
-	public static native void addItemToContainer (JavaScriptObject container, JavaScriptObject item) /*-{
-		container.append(item);
-	}-*/;
-	
-	public static native void clearContainer (JavaScriptObject container) /*-{
-		container.html("");
-	}-*/;
-	
-	public static native void hide (JavaScriptObject element) /*-{
-		element.hide();
-	}-*/;
+	public static void installKeyHandlerHook (int initialDelay, int interval) {
+		invoke(delegate, "installKeyHandlerHook", initialDelay, interval);
+	}
 
-	public static native void show (JavaScriptObject element) /*-{
-		element.show();
-	}-*/;
-
-	public static native void installKeyHandlerHook (int initialDelay, int interval) /*-{
-		
-		$wnd.onChatEntry = $entry(@tetris.imp.gwt.Bridge::onChatEntry(Ljava/lang/String;));
-		$wnd.onChatFocus = $entry(@tetris.imp.gwt.Bridge::onChatFocus());
-		$wnd.onGameFocus = $entry(@tetris.imp.gwt.Bridge::onGameFocus());
-		
-		keyRepeatInitialDelay = initialDelay;
-		keyRepeatInterval = interval;
-		keyRepeater = null;
-		keyRepeatDelayCycle = false;
-		keysDown = [];
-		
-		keyRepeatFunc = function() { 
-			if (keysDown.length > 0)
-			{
-				if (!keyRepeatDelayCycle)
-					$entry(@tetris.imp.gwt.Bridge::onKeyRepeat())(); 
-				
-				keyRepeatDelayCycle = false;
-			}
-		};
-		
-		keyRepeater = setInterval(keyRepeatFunc, interval);
-		
-	    $wnd.onkeydown = function(evt) {
-    		var key = evt.keyCode;
-    		
-    		var consumed = $entry(@tetris.imp.gwt.Bridge::onKeyDown(I))(key);
-    		if (consumed)
-    		{
-	    		for (var i=0; i<keysDown.length; ++i)
-	    			if (keysDown[i] == key)
-	    				return false;
-	    				
-	    		keysDown.push(key);
-	    		keyRepeatDelayCycle = true;
-    			evt.preventDefault();
-    		}
-    		
-    		return !consumed;
-    	}
-	    
-	    $wnd.onkeyup = function(evt) {
-    		var key = evt.keyCode;
-    		
-    		var consumed = $entry(@tetris.imp.gwt.Bridge::onKeyUp(I))(key);
-    		if (consumed)
-    			evt.preventDefault();
-    			
-    		for (var i=0; i<keysDown.length; ++i)
-    			if (keysDown[i] == key)
-    				keysDown.splice(i,1);
-    				
-    		return !consumed;
-    	}
-	    
-	    $wnd.$('#entry').click(function() { $wnd.onChatFocus(); });
-	    $wnd.$('#entry').keyup(function(event) {
-    		if(event.keyCode == 13)
-    		{
-    			$wnd.onChatEntry($wnd.$('#entry').val());
-    			$wnd.$('#entry').val('');
-    		}
-	    });
-	    
-	    $wnd.$('#localBoardContainer').click(function() { $wnd.onGameFocus(); });
-	}-*/;
-
-	public static native void setChatText(String text) /*-{
-		var div = $wnd.$('#chat');
-		div.html($wnd.htmlForTextWithEmbeddedNewlines(text));
-		
-		if (div.scrollTop() > (0.9 * div[0].scrollHeight));
-			div.scrollTop(div[0].scrollHeight);
-	}-*/;
+	public static void setChatText(String text) {
+		invoke(delegate, "setChatText", text);
+	}
 
 	public static native boolean isProduction() /*-{
 		return $wnd.IS_PRODUCTION;

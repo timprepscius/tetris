@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import tetris.network.ID;
 
 public class Game extends ModelSet
 {

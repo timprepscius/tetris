@@ -2,7 +2,6 @@ package tetris.model;
 
 import tetris.net.Net;
 import tetris.net.NetFactory;
-import tetris.network.ID;
 import tetris.view.View;
 import tetris.view.ViewFactory;
 

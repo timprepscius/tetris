@@ -1,6 +1,7 @@
 package tetris.imp.gwt;
 
 import tetris.model.GameInfo;
+import tetris.model.ID;
 import tetris.model.Model;
 import tetris.view.GameListView;
 
@@ -13,27 +14,21 @@ public class GameListViewGwt extends GameListView {
 	
 	public void onDraw ()
 	{
-		Bridge.clearContainer(getJS());
+		// clear the list
+		Bridge.invoke(getJS(), "html", "");
+		
+		// append each item
 		for (GameInfo info : getModel().getGames())
-		{
-			Bridge.addItemToContainer(getJS(), Bridge.createGameListItem(this, info.id.toString(), info.name));
-		}
+			Bridge.invoke(getJS(), "append", Bridge.createGameListItem(this, info));
 	}
 	
-	public void onJoin (String id)
+	public void onJoin (ID id)
 	{
 		for (GameInfo info : getModel().getGames())
 		{
-			if (info.id.toString().equals(id))
+			if (info.getID().equals(id))
 				getModel().joinGame(info);
 		}
 	}
 	
-	//------------------------------------------------
-	
-	public static void onJoin (Object self, String id)
-	{
-		((GameListViewGwt)self).onJoin(id);
-	}
-
 }

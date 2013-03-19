@@ -4,7 +4,7 @@ import java.util.Date;
 
 import tetris.model.PlayerInfo;
 import tetris.network.Connection;
-import tetris.network.ID;
+import tetris.model.ID;
 
 public class Player
 {

@@ -8,7 +8,7 @@ import tetris.model.GameInfo;
 import tetris.model.PlayerInfo;
 import tetris.network.Connection;
 import tetris.network.ConsoleConnection;
-import tetris.network.ID;
+import tetris.model.ID;
 import tetris.network.Message;
 import tetris.network.MessageReceiver;
 import tetris.network.MessageType;
@@ -28,8 +28,8 @@ public class Server implements MessageReceiver
 	{
 		ID id = ID.fromLong(1);
 		GameInfo info = new GameInfo();
-		info.id = id;
-		info.name = "Dummy Game";
+		info.setID(id);
+		info.setName("Dummy Game");
 		
 		games.put(id, new Game(info));
 	}
@@ -74,8 +74,8 @@ public class Server implements MessageReceiver
 	{
 		ID id = ID.random();
 		PlayerInfo playerInfo = new PlayerInfo();
-		playerInfo.id = id;
-		playerInfo.name = "lolz:"+id.toString();
+		playerInfo.setID(id);
+		playerInfo.setName("lolz:"+id.toString());
 		
 		Player player = new Player(playerInfo, connection);
 		players.put(connection, player);

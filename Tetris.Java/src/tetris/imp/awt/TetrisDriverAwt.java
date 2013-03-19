@@ -10,7 +10,7 @@ import tetris.imp.view.ViewPlatform;
 import tetris.model.Tetris;
 import tetris.net.NetFactory;
 import tetris.network.ConnectionFactory;
-import tetris.network.ID;
+import tetris.model.ID;
 import tetris.view.ViewFactory;
 
 public class TetrisDriverAwt
